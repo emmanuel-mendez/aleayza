@@ -1,0 +1,13 @@
+---
+import { Image } from "astro:assets";
+
+export interface PictureProps {
+  metadata: ImageMetadata;
+  alt: string;
+  name: string;
+}
+
+const { metadata, alt, name } = Astro.props;
+---
+
+<Image src={metadata} alt={alt} class:list={["picture", `picture--${name}`]} />

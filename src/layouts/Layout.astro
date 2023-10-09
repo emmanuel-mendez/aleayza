@@ -1,0 +1,41 @@
+---
+import Footer from "../components/organisms/Footer.astro";
+import Header from "../components/organisms/Header.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Aleayza is a free and open-source template, built with Astro and TypeScript. It serves as a starting point for creating your personal portfolio website or showcasing your projects online. The template is open-source and released under the MIT license, meaning you are free to use, modify, and distribute it for personal or commercial purposes."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="layout">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+<style>
+  .layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template: auto 1fr auto / 1fr;
+    grid-template-areas:
+      "layout-header"
+      "layout-content"
+      "layout-footer";
+  }
+</style>

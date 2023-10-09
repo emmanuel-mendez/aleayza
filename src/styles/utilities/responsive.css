@@ -1,0 +1,17 @@
+.responsive--mobile {
+  @media (width >=26.875rem) {
+    display: none;
+  }
+}
+
+.responsive--tablet {
+  @media (width >=48rem) {
+    display: none;
+  }
+}
+
+.responsive--desktop {
+  @media (width <=64rem) {
+    display: none;
+  }
+}

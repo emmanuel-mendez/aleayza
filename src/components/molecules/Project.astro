@@ -1,0 +1,40 @@
+---
+import type { ButtonProps } from "../atoms/Button.astro";
+import Button from "../atoms/Button.astro";
+import type { PictureProps } from "../atoms/Picture.astro";
+import Picture from "../atoms/Picture.astro";
+
+interface Props {
+  image: PictureProps;
+  date: string;
+  title: string;
+  description: string;
+  buttons: ButtonProps[];
+}
+
+const { image, date, title, description, buttons } = Astro.props;
+---
+
+<div class="card">
+  <Picture metadata={image.metadata} alt={image.alt} name={image.name} />
+
+  <div class="info">
+    <time class="date" datetime={date}>{date}</time>
+    <h2 class="title">{title}</h2>
+    <p class="description">{description}</p>
+  </div>
+
+  <div class="buttons">
+    {
+      buttons.map((button: ButtonProps) => (
+        <Button
+          label={button.label}
+          modifier={button.modifier}
+          link={button.link}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style></style>
