@@ -1,0 +1,9 @@
+services:
+  frontend:
+    image: emmanuelmendez/aleayza
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4321:4321
