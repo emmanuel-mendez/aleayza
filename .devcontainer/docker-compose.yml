@@ -1,0 +1,10 @@
+services:
+  devcontainer:
+    image: aleayza:devcontainer
+    container_name: aleayza__devcontainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
