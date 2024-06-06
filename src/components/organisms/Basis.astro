@@ -1,0 +1,125 @@
+---
+import { getEntry } from "astro:content";
+import { type Icon } from "@/models/types/Icon";
+import Section from "../molecules/Section.astro";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import X from "@/icons/X.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import GitHub from "@/icons/GitHub.astro";
+
+const content = await getEntry("portfolio", "data");
+
+const { basis, about, projects, education, skills } = content.data;
+
+const SOCIAL_ICONS: Icon = {
+  GitHub,
+  LinkedIn,
+  X,
+};
+---
+
+<Section>
+  <div class="host">
+    <div class="information">
+      <div class="body">
+        <h1>{basis?.name}</h1>
+        <p>{basis?.label}</p>
+      </div>
+
+      <footer class="print">
+        {
+          [
+            basis?.email,
+            basis?.phone,
+            basis?.profiles?.find(({ network }) => network === "LinkedIn")?.url,
+          ]
+            .filter(Boolean)
+            .join(" • ")
+        }
+      </footer>
+      <footer class="no-print">
+        {
+          basis?.email && (
+            <a
+              href={`mailto:${basis?.email}`}
+              title={`Enviar un correo electrónico a ${basis?.name} al correo ${basis?.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Mail />
+            </a>
+          )
+        }
+        {
+          basis?.phone && (
+            <a
+              href={`tel:${basis?.phone}`}
+              title={`Llamar por teléfono a ${basis?.name} al número ${basis?.phone}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Phone />
+            </a>
+          )
+        }
+        {
+          basis &&
+            basis.profiles &&
+            basis.profiles.map(({ network, url }) => {
+              let Icon;
+
+              if (network) {
+                Icon = SOCIAL_ICONS[network];
+              }
+
+              return (
+                <a
+                  href={url}
+                  title={`Visitar el perfil de ${basis?.name} en ${network}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon />
+                </a>
+              );
+            })
+        }
+      </footer>
+    </div>
+
+    <figure>
+      <img src={basis?.image} alt={basis?.name} />
+    </figure>
+  </div>
+</Section>
+
+<style>
+  .host {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 16rem;
+    border-radius: 100%;
+    border: 0.0625rem solid black;
+  }
+
+  @media (min-width: 48rem) {
+    .host {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+</style>

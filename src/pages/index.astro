@@ -1,47 +1,16 @@
 ---
 import About from "../components/organisms/About.astro";
-import Banner from "../components/organisms/Banner.astro";
-import Contact from "../components/organisms/Contact.astro";
+import Basis from "../components/organisms/Basis.astro";
 import Projects from "../components/organisms/Projects.astro";
+import Education from "../components/organisms/Education.astro";
 import Skills from "../components/organisms/Skills.astro";
-import Testimonies from "../components/organisms/Testimonies.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Aleayza">
-  <Banner />
+  <Basis />
   <About />
-  <Skills />
   <Projects />
-  <Testimonies />
-  <Contact />
+  <Education />
+  <Skills />
 </Layout>
-
-<style is:global>
-  /* generic */
-  @import "../styles/generic/normalize.css";
-  @import "../styles/generic/box-sizing.css";
-
-  /* settings */
-  @import "../styles/settings/color.css";
-  @import "../styles/settings/typography.css";
-
-  /* elements */
-  @import "../styles/elements/figure.css";
-  @import "../styles/elements/heading.css";
-  @import "../styles/elements/image.css";
-  @import "../styles/elements/input.css";
-  @import "../styles/elements/link.css";
-  @import "../styles/elements/paragraph.css";
-
-  /* objects */
-  @import "../styles/objects/container.css";
-  @import "../styles/objects/unordered-list.css";
-
-  /* utilities */
-  @import "../styles/utilities/cursor.css";
-  @import "../styles/utilities/display.css";
-  @import "../styles/utilities/position.css";
-  @import "../styles/utilities/responsive.css";
-  @import "../styles/utilities/background.css";
-</style>
