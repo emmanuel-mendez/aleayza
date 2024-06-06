@@ -1,9 +1,50 @@
 services:
-  frontend:
-    image: emmanuelmendez/aleayza
+  dev:
+    image: aleayza:development
+    container_name: aleayza__development
     build:
       context: .
-    environment:
-      NODE_ENV: production
+      target: development
+    command: /bin/ash
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /home/app
+
+  watch:
+    image: aleayza:watch
+    container_name: aleayza__watch
+    build:
+      context: .
+      target: install
     ports:
       - 4321:4321
+    develop:
+      watch:
+        - action: sync
+          path: ./
+          target: /home/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+    command: npx astro dev --host 0.0.0.0
+
+  preview:
+    image: aleayza:production
+    container_name: aleayza__preview
+    build:
+      context: .
+      target: production
+    ports:
+      - 4000:80
+    develop:
+      watch:
+        - action: sync
+          path: ./
+          target: /home/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./
