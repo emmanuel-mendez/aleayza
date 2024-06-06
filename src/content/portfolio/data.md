@@ -2,7 +2,7 @@
   basis:
     name: Emmanuel Mendez
     label: Software Engineer
-    image: /images/me.webp
+    image: ./images/me.webp
     email: emmanuel@example.com
     phone: 123-456-7890
     url: https://example.com
