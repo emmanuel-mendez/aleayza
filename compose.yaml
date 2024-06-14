@@ -20,6 +20,8 @@ services:
       target: install
     ports:
       - 4321:4321
+    volumes:
+      - .:/home/app
     develop:
       watch:
         - action: sync
