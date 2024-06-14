@@ -2,24 +2,23 @@ import { z, defineCollection } from "astro:content";
 
 const basisCollection = defineCollection({
   type: "data",
-  schema: ({ image }) =>
-    z.object({
-      name: z.string().optional(),
-      label: z.string().optional(),
-      image: image().optional(),
-      email: z.string().optional(),
-      phone: z.string().optional(),
-      url: z.string().optional(),
-      profiles: z
-        .array(
-          z.object({
-            network: z.string().optional(),
-            username: z.string().optional(),
-            url: z.string().optional(),
-          })
-        )
-        .optional(),
-    }),
+  schema: z.object({
+    name: z.string().optional(),
+    label: z.string().optional(),
+    image: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    url: z.string().optional(),
+    profiles: z
+      .array(
+        z.object({
+          network: z.string().optional(),
+          username: z.string().optional(),
+          url: z.string().optional(),
+        })
+      )
+      .optional(),
+  }),
 });
 
 const aboutCollection = defineCollection({
