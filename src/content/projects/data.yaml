@@ -1,10 +1,12 @@
-title: My Projects
+title: Projects
 list:
-  - name: My Project
+  - name: Project
     isActive: true
-    description: This is a description of my project.
+    description: Description of the project.
     highlights: 
-      - Implemented feature X 
-      - Improved performance by Y%
+      - Features implemented
+      - Improvements made
+      - Results achieved
+      - Technologies used
     url: https://example.com/my-project
     image: https://example.com/my-project.jpg
