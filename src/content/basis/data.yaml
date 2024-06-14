@@ -1,6 +1,6 @@
 name: Firstname Lastname
 label: Headline
-image: ./images/me.webp
+image: public/images/me.webp
 email: user@email.com
 phone: 000-000-0000
 url: https://example.com
