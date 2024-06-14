@@ -14,3 +14,46 @@ import Layout from "../layouts/Layout.astro";
   <Education />
   <Skills />
 </Layout>
+
+<style is:global>
+  /* generic */
+  @import "../styles/generic/normalize.css";
+  @import "../styles/generic/box-sizing.css";
+
+  /* settings */
+  @import "../styles/settings/color.css";
+  @import "../styles/settings/typography.css";
+
+  /* elements */
+  @import "../styles/elements/figure.css";
+  @import "../styles/elements/heading.css";
+  @import "../styles/elements/image.css";
+  @import "../styles/elements/input.css";
+  @import "../styles/elements/link.css";
+  @import "../styles/elements/paragraph.css";
+
+  /* objects */
+  @import "../styles/objects/container.css";
+  @import "../styles/objects/unordered-list.css";
+
+  /* utilities */
+  @import "../styles/utilities/cursor.css";
+  @import "../styles/utilities/display.css";
+  @import "../styles/utilities/position.css";
+  @import "../styles/utilities/responsive.css";
+  @import "../styles/utilities/background.css";
+
+  .print {
+    display: none !important;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    .print {
+      display: block !important;
+    }
+  }
+</style>
