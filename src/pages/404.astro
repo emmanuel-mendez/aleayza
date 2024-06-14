@@ -1,21 +1,26 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
 import Section from "../components/molecules/Section.astro";
+import Layout from "../layouts/Layout.astro";
+
+const pageNotFound = await getEntry("404", "data");
+
+const { title, description, information, goBack } = pageNotFound.data;
 ---
 
 <Layout title="Aleayza">
   <Section>
     <div class="body">
       <header class="header">
-        <h1 class="title">404</h1>
-        <p class="description">Page not found</p>
+        <h1 class="title">{title}</h1>
+        <p class="description">{description}</p>
       </header>
 
       <footer class="footer">
         <p class="description information">
-          The page you are looking for does not exist.
+          {information}
         </p>
-        <a href="/" class="link go-back">Go back to portfolio</a>
+        <a href="/" class="link go-back">{goBack}</a>
       </footer>
     </div>
   </Section>
