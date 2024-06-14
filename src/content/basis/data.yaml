@@ -1,0 +1,16 @@
+name: Firstname Lastname
+label: Headline
+image: '../../../public/images/me.webp'
+email: user@email.com
+phone: 000-000-0000
+url: https://example.com
+profiles:
+  - network: LinkedIn
+    username: username-linkedin
+    url: www.linkedin.com/in/username-linkedin
+  - network: GitHub
+    username: username-github
+    url: https://github.com/username-github
+  - network: X
+    username: username-x
+    url: https://x.com/username-x

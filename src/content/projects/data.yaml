@@ -1,0 +1,10 @@
+title: My Projects
+list:
+  - name: My Project
+    isActive: true
+    description: This is a description of my project.
+    highlights: 
+      - Implemented feature X 
+      - Improved performance by Y%
+    url: https://example.com/my-project
+    image: https://example.com/my-project.jpg

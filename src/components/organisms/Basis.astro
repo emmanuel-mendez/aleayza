@@ -1,5 +1,4 @@
 ---
-import { getEntry } from "astro:content";
 import { type Icon } from "@/models/types/Icon";
 import Section from "../molecules/Section.astro";
 import Mail from "@/icons/Mail.astro";
@@ -7,43 +6,42 @@ import Phone from "@/icons/Phone.astro";
 import X from "@/icons/X.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
 import GitHub from "@/icons/GitHub.astro";
+import { getEntry } from "astro:content";
 
-const content = await getEntry("portfolio", "data");
-
-const { basis, about, projects, education, skills } = content.data;
+const basis = await getEntry("basis", "data");
 
 const SOCIAL_ICONS: Icon = {
   GitHub,
   LinkedIn,
   X,
 };
+
+const { name, label, image, email, phone, profiles } = basis.data;
 ---
 
 <Section>
   <div class="host">
     <div class="information">
       <div class="body">
-        <h1>{basis?.name}</h1>
-        <p>{basis?.label}</p>
+        <h1>{name}</h1>
+        <p>{label}</p>
       </div>
 
       <footer class="print">
         {
           [
-            basis?.email,
-            basis?.phone,
-            basis?.profiles?.find(({ network }) => network === "LinkedIn")?.url,
-          ]
-            .filter(Boolean)
-            .join(" • ")
+            email,
+            phone,
+            profiles?.find(({ network }) => network === "LinkedIn")?.url,
+          ].map((info) => <a class="profile profile--print">{info}</a>)
         }
       </footer>
       <footer class="no-print">
         {
-          basis?.email && (
+          email && (
             <a
-              href={`mailto:${basis?.email}`}
-              title={`Enviar un correo electrónico a ${basis?.name} al correo ${basis?.email}`}
+              href={`mailto:${email}`}
+              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -52,10 +50,10 @@ const SOCIAL_ICONS: Icon = {
           )
         }
         {
-          basis?.phone && (
+          phone && (
             <a
-              href={`tel:${basis?.phone}`}
-              title={`Llamar por teléfono a ${basis?.name} al número ${basis?.phone}`}
+              href={`tel:${phone}`}
+              title={`Llamar por teléfono a ${name} al número ${phone}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -64,9 +62,8 @@ const SOCIAL_ICONS: Icon = {
           )
         }
         {
-          basis &&
-            basis.profiles &&
-            basis.profiles.map(({ network, url }) => {
+          profiles &&
+            profiles.map(({ network, url }) => {
               let Icon;
 
               if (network) {
@@ -75,8 +72,9 @@ const SOCIAL_ICONS: Icon = {
 
               return (
                 <a
+                  class="profile"
                   href={url}
-                  title={`Visitar el perfil de ${basis?.name} en ${network}`}
+                  title={`Visitar el perfil de ${name} en ${network}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -88,20 +86,63 @@ const SOCIAL_ICONS: Icon = {
       </footer>
     </div>
 
-    <figure>
-      <img src={basis?.image} alt={basis?.name} />
-    </figure>
+    {image && <img class={"no-print"} src={image.src} alt={name} width="112" />}
   </div>
 </Section>
 
 <style>
   .host {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .information {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 1rem;
   }
 
-  figure {
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  h1 {
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  p {
+    color: var(--monochromatic--darker);
+  }
+
+  footer {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  footer.no-print {
+    flex-direction: row;
+  }
+
+  footer.print {
+    gap: 1ch;
+  }
+  .profile--print {
+    display: inline;
+    font-size: 0.8rem;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+  }
+
+  picture {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,16 +151,13 @@ const SOCIAL_ICONS: Icon = {
   img {
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    width: 16rem;
-    border-radius: 100%;
-    border: 0.0625rem solid black;
+    background-color: var(--primary);
+    border-radius: 1rem;
   }
 
   @media (min-width: 48rem) {
     .host {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+      gap: 1rem;
     }
   }
 </style>
