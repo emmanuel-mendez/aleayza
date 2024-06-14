@@ -4,7 +4,7 @@ const basisCollection = defineCollection({
   type: "data",
   schema: z.object({
     name: z.string().optional(),
-    label: z.string().optional(),
+    headline: z.string().optional(),
     image: z.string().optional(),
     email: z.string().optional(),
     phone: z.string().optional(),
@@ -57,7 +57,6 @@ const educationCollection = defineCollection({
         z.object({
           institution: z.string().optional(),
           description: z.string().optional(),
-          highlights: z.array(z.string()).optional(),
           startDate: z.coerce.date().optional(),
           endDate: z.coerce.date().optional(),
         })
