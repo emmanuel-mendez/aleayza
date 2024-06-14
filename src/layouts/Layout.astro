@@ -1,5 +1,22 @@
 ---
 import Footer from "../components/organisms/Footer.astro";
+import "../styles/generic/normalize.css";
+import "../styles/generic/box-sizing.css";
+import "../styles/settings/color.css";
+import "../styles/settings/typography.css";
+import "../styles/elements/figure.css";
+import "../styles/elements/heading.css";
+import "../styles/elements/image.css";
+import "../styles/elements/input.css";
+import "../styles/elements/link.css";
+import "../styles/elements/paragraph.css";
+import "../styles/objects/container.css";
+import "../styles/objects/unordered-list.css";
+import "../styles/utilities/cursor.css";
+import "../styles/utilities/display.css";
+import "../styles/utilities/position.css";
+import "../styles/utilities/responsive.css";
+import "../styles/utilities/background.css";
 
 interface Props {
   title: string;
@@ -28,32 +45,18 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
-  /* generic */
-  @import "../styles/generic/normalize.css";
-  @import "../styles/generic/box-sizing.css";
+  .layout {
+    display: grid;
+    min-height: 100svh;
+    grid-template-columns: 1fr auto;
+    padding: 2rem 1rem;
+  }
 
-  /* settings */
-  @import "../styles/settings/color.css";
-  @import "../styles/settings/typography.css";
-
-  /* elements */
-  @import "../styles/elements/figure.css";
-  @import "../styles/elements/heading.css";
-  @import "../styles/elements/image.css";
-  @import "../styles/elements/input.css";
-  @import "../styles/elements/link.css";
-  @import "../styles/elements/paragraph.css";
-
-  /* objects */
-  @import "../styles/objects/container.css";
-  @import "../styles/objects/unordered-list.css";
-
-  /* utilities */
-  @import "../styles/utilities/cursor.css";
-  @import "../styles/utilities/display.css";
-  @import "../styles/utilities/position.css";
-  @import "../styles/utilities/responsive.css";
-  @import "../styles/utilities/background.css";
+  @media (min-width: 48rem) {
+    .layout {
+      padding: 4rem 2rem;
+    }
+  }
 
   .print {
     display: none !important;
@@ -66,19 +69,6 @@ const { title } = Astro.props;
 
     .print {
       display: block !important;
-    }
-  }
-
-  .layout {
-    display: grid;
-    min-height: 100svh;
-    grid-template-columns: 1fr auto;
-    padding: 2rem 1rem;
-  }
-
-  @media (min-width: 48rem) {
-    .layout {
-      padding: 4rem 2rem;
     }
   }
 </style>
