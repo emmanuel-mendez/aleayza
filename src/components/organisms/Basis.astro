@@ -30,10 +30,28 @@ const { name, headline, image, email, phone, profiles } = basis.data;
       <footer class="footer footer--print print">
         {
           [
-            email,
-            phone,
+            email?.trim(),
+            phone?.trim(),
             profiles?.find(({ network }) => network === "LinkedIn")?.url,
-          ].map((info) => <a class="profile profile--print">{info}</a>)
+          ]
+            .filter(Boolean)
+            .map((profile, index, arr) => (
+              <>
+                {profile?.trim() === phone?.trim() ? (
+                  <a
+                    href={`tel:${profile}`}
+                    class="link profile profile--print"
+                  >
+                    {profile}
+                  </a>
+                ) : (
+                  <a href={profile} class="link profile profile--print">
+                    {profile}
+                  </a>
+                )}
+                {index < arr.length - 1 && <span class="separator" />}
+              </>
+            ))
         }
       </footer>
       <footer class="footer footer--no-print no-print">
@@ -111,15 +129,15 @@ const { name, headline, image, email, phone, profiles } = basis.data;
   .body {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
   }
   .name {
     color: var(--primary);
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   .headline {
+    font-size: 0.85rem;
   }
 
   .footer {
@@ -127,12 +145,14 @@ const { name, headline, image, email, phone, profiles } = basis.data;
     gap: 0.5rem;
 
     &--print {
+      justify-content: center;
       text-align: center;
       gap: 2rem;
     }
 
     &--no-print {
       flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 
@@ -144,11 +164,16 @@ const { name, headline, image, email, phone, profiles } = basis.data;
 
     &--print {
       display: inline;
+      padding: 0;
     }
     &--no-print {
       display: inline;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
+  }
+
+  .separator {
+    padding-inline: 1.5ch;
   }
 
   .picture {
@@ -164,9 +189,18 @@ const { name, headline, image, email, phone, profiles } = basis.data;
     border-radius: 1rem;
   }
 
-  @media (min-width: 48rem) {
+  @media (min-width: 37.5rem) {
     .host {
       gap: 1rem;
+    }
+    .name {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .headline {
+      font-size: 1rem;
     }
   }
 </style>

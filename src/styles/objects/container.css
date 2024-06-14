@@ -1,9 +1,0 @@
-.container {
-  max-width: 85.375em;
-}
-
-@media (width >= 48em) {
-  .container {
-    margin: 0 auto;
-  }
-}
