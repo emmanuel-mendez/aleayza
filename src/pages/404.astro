@@ -1,11 +1,78 @@
 ---
+import { getEntry } from "astro:content";
+import Section from "../components/molecules/Section.astro";
 import Layout from "../layouts/Layout.astro";
+
+const pageNotFound = await getEntry("404", "data");
+
+const { title, description, information, goBack } = pageNotFound.data;
 ---
 
 <Layout title="Aleayza">
-  <section>
-    <h2>404</h2>
-  </section>
+  <Section>
+    <div class="body">
+      <header class="header">
+        <h1 class="title">{title}</h1>
+        <p class="description">{description}</p>
+      </header>
+
+      <footer class="footer">
+        <p class="description information">
+          {information}
+        </p>
+        <a href="/" class="link go-back">{goBack}</a>
+      </footer>
+    </div>
+  </Section>
 </Layout>
 
-<style is:global></style>
+<style>
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    gap: 1.5rem;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .information {
+    text-align: center;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .go-back {
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 37.5rem) {
+    .title {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+  }
+</style>

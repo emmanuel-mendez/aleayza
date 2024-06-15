@@ -73,10 +73,21 @@ const skillsCollection = defineCollection({
   }),
 });
 
+const pageNotFoundCollection = defineCollection({
+  type: "data",
+  schema: z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    information: z.string().optional(),
+    goBack: z.string().optional(),
+  }),
+});
+
 export const collections = {
   basis: basisCollection,
   about: aboutCollection,
   projects: projectsCollection,
   education: educationCollection,
   skills: skillsCollection,
+  pageNotFound: pageNotFoundCollection,
 };
