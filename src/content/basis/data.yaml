@@ -7,7 +7,7 @@ url: https://example.com
 profiles:
   - network: LinkedIn
     username: username-linkedin
-    url: www.linkedin.com/in/username-linkedin
+    url: https://linkedin.com/in/username-linkedin
   - network: GitHub
     username: username-github
     url: https://github.com/username-github
