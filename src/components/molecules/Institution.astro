@@ -1,0 +1,26 @@
+---
+interface Props {
+  institution?: string;
+  description?: string;
+  startDate?: Date;
+  endDate?: Date;
+}
+
+const { institution, description, startDate, endDate } = Astro.props;
+---
+
+<article>
+  <h3>{institution}</h3>
+
+  <p>{description}</p>
+
+  <p>
+    <time datetime={startDate?.toISOString()}>
+      {startDate?.toLocaleDateString()}
+    </time>
+    -
+    <time datetime={endDate?.toISOString()}>
+      {endDate?.toLocaleDateString()}
+    </time>
+  </p>
+</article>

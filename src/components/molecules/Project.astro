@@ -1,40 +1,40 @@
 ---
-import type { ButtonProps } from "../atoms/Button.astro";
-import Button from "../atoms/Button.astro";
-import type { PictureProps } from "../atoms/Picture.astro";
-import Picture from "../atoms/Picture.astro";
+import { Image } from "astro:assets";
 
-interface Props {
-  image: PictureProps;
-  date: string;
-  title: string;
-  description: string;
-  buttons: ButtonProps[];
+export interface Props {
+  image?: string;
+  url?: string;
+  name?: string;
+  isActive?: boolean;
+  description?: string;
+  highlights?: string[];
 }
 
-const { image, date, title, description, buttons } = Astro.props;
+const { image, url, name, isActive, description, highlights } = Astro.props;
 ---
 
-<div class="card">
-  <Picture metadata={image.metadata} alt={image.alt} name={image.name} />
-
-  <div class="info">
-    <time class="date" datetime={date}>{date}</time>
-    <h2 class="title">{title}</h2>
-    <p class="description">{description}</p>
-  </div>
-
-  <div class="buttons">
+<article>
+  <h3>
+    <a href={url}>{name}</a>
+  </h3>
+  <p aria-label={`Project status: ${isActive ? "Active" : "Inactive"}`}>
+    {isActive ? "Active" : "Inactive"}
+  </p>
+  <p>{description}</p>
+  <ul>
     {
-      buttons.map((button: ButtonProps) => (
-        <Button
-          label={button.label}
-          modifier={button.modifier}
-          link={button.link}
-        />
+      highlights?.map((highlight) => (
+        <li>
+          <p>{highlight}</p>
+        </li>
       ))
     }
-  </div>
-</div>
-
-<style></style>
+  </ul>
+  {
+    image && name && (
+      <figure>
+        <Image src={image} alt={name} width="64" height="64" />
+      </figure>
+    )
+  }
+</article>

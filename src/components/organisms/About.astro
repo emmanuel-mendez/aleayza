@@ -1,0 +1,17 @@
+---
+import Section from "../molecules/Section.astro";
+
+interface Props {
+  title?: string;
+  summary?: string;
+}
+
+const { title, summary } = Astro.props;
+---
+
+<Section>
+  <main>
+    <h2>{title}</h2>
+    <p>{summary}</p>
+  </main>
+</Section>

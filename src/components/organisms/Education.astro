@@ -1,0 +1,29 @@
+---
+import Institution from "../molecules/Institution.astro";
+import Section from "../molecules/Section.astro";
+
+interface Props {
+  title?: string;
+  list?: {
+    institution?: string;
+    description?: string;
+    startDate?: Date;
+    endDate?: Date;
+  }[];
+}
+
+const { title, list } = Astro.props;
+---
+
+<Section>
+  <h2>{title}</h2>
+  <ul>
+    {
+      list?.map((institution) => (
+        <li>
+          <Institution {...institution} />
+        </li>
+      ))
+    }
+  </ul>
+</Section>

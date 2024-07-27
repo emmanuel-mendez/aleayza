@@ -1,12 +1,12 @@
 ---
-import Project, {
-  type Props as ProjectProps,
-} from "../molecules/Project.astro";
+import Position, {
+  type Props as PositionProps,
+} from "../molecules/Position.astro";
 import Section from "../molecules/Section.astro";
 
 interface Props {
-  title?: string;
-  list?: ProjectProps[];
+  title: string;
+  list: PositionProps[];
 }
 
 const { title, list } = Astro.props;
@@ -16,9 +16,9 @@ const { title, list } = Astro.props;
   <h2>{title}</h2>
   <ul>
     {
-      list?.map((project) => (
+      list?.map((position) => (
         <li>
-          <Project {...project} />
+          <Position {...position} />
         </li>
       ))
     }

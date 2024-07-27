@@ -1,31 +1,33 @@
 ---
-import GitHub from "@/icons/GitHub.astro";
-import LinkedIn from "@/icons/LinkedIn.astro";
-import Mail from "@/icons/Mail.astro";
-import Phone from "@/icons/Phone.astro";
-import X from "@/icons/X.astro";
-import { type Icon } from "@/models/types/Icon";
-import { getEntry } from "astro:content";
+import Icon from "../atoms/Icon.astro";
 import Section from "../molecules/Section.astro";
 
-const basis = await getEntry("basis", "data");
+interface Props {
+  fullName?: string;
+  headline?: string;
+  image?: string;
+  email?: string;
+  phone?: string;
+  url?: string;
+  profiles?: BasisProfile[];
+}
 
-const SOCIAL_ICONS: Icon = {
-  GitHub,
-  LinkedIn,
-  X,
-};
+interface BasisProfile {
+  url?: string;
+  network?: string;
+  username?: string;
+}
 
-const { name, headline, image, email, phone, profiles } = basis.data;
+const { fullName, headline, image, email, phone, profiles } = Astro.props;
 ---
 
 <Section>
-  <div class="host">
-    <div class="information">
-      <div class="body">
-        <h1 class="name">{name}</h1>
+  <artcile class="host">
+    <div class="body">
+      <header class="information">
+        <h1 class="name">{fullName}</h1>
         <p class="headline">{headline}</p>
-      </div>
+      </header>
 
       <footer class="footer footer--print print">
         {
@@ -54,17 +56,17 @@ const { name, headline, image, email, phone, profiles } = basis.data;
             ))
         }
       </footer>
-      <footer class="footer footer--no-print no-print">
+      <aside class="footer footer--no-print no-print">
         {
           email && (
             <a
               class="profile profile--no-print"
               href={`mailto:${email}`}
-              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
+              title={`Enviar un correo electrónico a ${fullName} al correo ${email}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Mail />
+              <Icon name="Mail" />
             </a>
           )
         }
@@ -73,43 +75,37 @@ const { name, headline, image, email, phone, profiles } = basis.data;
             <a
               class="profile profile--no-print"
               href={`tel:${phone}`}
-              title={`Llamar por teléfono a ${name} al número ${phone}`}
+              title={`Llamar por teléfono a ${fullName} al número ${phone}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Phone />
+              <Icon name="Phone" />
             </a>
           )
         }
         {
           profiles &&
             profiles.map(({ network, url }) => {
-              let Icon;
-
-              if (network) {
-                Icon = SOCIAL_ICONS[network];
-              }
-
               return (
                 <a
                   class="profile profile--no-print"
                   href={url}
-                  title={`Visitar el perfil de ${name} en ${network}`}
+                  title={`Visitar el perfil de ${fullName} en ${network}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon />
+                  <Icon name={network} />
                 </a>
               );
             })
         }
-      </footer>
+      </aside>
     </div>
 
-    <picture class="picture no-print">
-      {image && <img class="image" src={image} alt={name} width="112" />}
-    </picture>
-  </div>
+    <figure class="picture no-print">
+      {image && <img class="image" src={image} alt={fullName} width="112" />}
+    </figure>
+  </artcile>
 </Section>
 
 <style>
