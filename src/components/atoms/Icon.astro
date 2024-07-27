@@ -1,0 +1,28 @@
+---
+import GitHub from "@/icons/GitHub.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import X from "@/icons/X.astro";
+import type { JSX } from "astro/jsx-runtime";
+
+interface Props {
+  name?: string;
+}
+
+type Icon = (props?: any) => JSX.Element;
+
+const { name } = Astro.props;
+
+const icons: Record<string, Icon> = {
+  GitHub,
+  LinkedIn,
+  X,
+  Mail,
+  Phone,
+};
+
+const IconComponent = icons[name as keyof typeof icons];
+---
+
+<IconComponent />

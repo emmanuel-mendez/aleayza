@@ -1,0 +1,23 @@
+---
+import Section from "../molecules/Section.astro";
+
+interface Props {
+  title?: string;
+  list?: string[];
+}
+
+const { title, list } = Astro.props;
+---
+
+<Section>
+  <h2>{title}</h2>
+  <ul>
+    {
+      list?.map((skill) => (
+        <li>
+          <p>{skill}</p>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

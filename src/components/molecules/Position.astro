@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+  image?: string | undefined;
+  url?: string | undefined;
+  company?: string | undefined;
+  role?: string | undefined;
+  startDate?: Date | undefined;
+  endDate?: Date | undefined;
+  responsibilities?: string[] | undefined;
+  keyAccomplishments?: string[] | undefined;
+}
+
+const {
+  image,
+  url,
+  company,
+  role,
+  startDate,
+  endDate,
+  responsibilities,
+  keyAccomplishments,
+} = Astro.props;
+---
+
+<article>
+  <header>
+    <h3>
+      <a href={url}>{company}</a>
+    </h3>
+    <h4>{role}</h4>
+
+    <p>
+      <time datetime={startDate?.toISOString()}>
+        {startDate?.toLocaleDateString()}
+      </time>
+      -
+      <time datetime={endDate?.toISOString()}>
+        {endDate?.toLocaleDateString() || "Present"}
+      </time>
+    </p>
+
+    <dl>
+      <dt>Responsibilities</dt>
+      <dd>
+        <ul>
+          {responsibilities?.map((responsibility) => <li>{responsibility}</li>)}
+        </ul>
+      </dd>
+      <dt>Key Accomplishments</dt>
+      <dd>
+        <ul>
+          {
+            keyAccomplishments?.map((accomplishment) => (
+              <li>{accomplishment}</li>
+            ))
+          }
+        </ul>
+      </dd>
+    </dl>
+  </header>
+  <figure>
+    {
+      image && company && (
+        <Image src={image} alt={company} width="64" height="64" />
+      )
+    }
+  </figure>
+</article>

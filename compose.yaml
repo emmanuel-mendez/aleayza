@@ -7,6 +7,7 @@ services:
       target: development
     command: /bin/ash
     tty: true
+    stdin_open: true
     volumes:
       - type: bind
         source: ./
