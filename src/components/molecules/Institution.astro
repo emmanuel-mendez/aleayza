@@ -1,18 +1,18 @@
 ---
-interface Props {
+export interface Props {
   institution?: string;
-  description?: string;
+  degree?: string;
   startDate?: Date;
   endDate?: Date;
 }
 
-const { institution, description, startDate, endDate } = Astro.props;
+const { institution, degree, startDate, endDate } = Astro.props;
 ---
 
 <article>
   <h3>{institution}</h3>
 
-  <p>{description}</p>
+  <p>{degree}</p>
 
   <p>
     <time datetime={startDate?.toISOString()}>
