@@ -1,16 +1,22 @@
 ---
+import Education from "@/components/organisms/Education.astro";
 import About from "../components/organisms/About.astro";
 import Basis from "../components/organisms/Basis.astro";
 import Projects from "../components/organisms/Projects.astro";
-import Education from "../components/organisms/Education.astro";
 import Skills from "../components/organisms/Skills.astro";
 import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+import WorkExperience from "@/components/organisms/WorkExperience.astro";
+
+const home = await getEntry("home", "data");
+const { basis, about, workExperience, projects, education, skills } = home.data;
 ---
 
 <Layout title="Aleayza">
-  <Basis />
-  <About />
-  <Projects />
-  <Education />
-  <Skills />
+  <Basis {...basis} />
+  <About {...about} />
+  <WorkExperience {...workExperience} />
+  <Projects {...projects} />
+  <Education {...education} />
+  <Skills {...skills} />
 </Layout>
