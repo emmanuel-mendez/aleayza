@@ -36,6 +36,20 @@ workExperience:
         - Results achieved
       url: https://example.com/my-project
       image: https://example.com/my-project.jpg
+    - company: Company
+      role: Role
+      startDate: 2018-09-01
+      endDate: 2022-05-31
+      responsibilities: 
+        - Create
+        - Maintain
+        - Upgrade
+      keyAccomplishments: 
+        - Features implemented
+        - Improvements made
+        - Results achieved
+      url: https://example.com/my-project
+      image: https://example.com/my-project.jpg
 projects :
   title: Projects
   list:
