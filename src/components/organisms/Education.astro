@@ -1,15 +1,12 @@
 ---
-import Institution from "../molecules/Institution.astro";
+import Institution, {
+  type Props as InstitutionProps,
+} from "../molecules/Institution.astro";
 import Section from "../molecules/Section.astro";
 
 interface Props {
   title?: string;
-  list?: {
-    institution?: string;
-    description?: string;
-    startDate?: Date;
-    endDate?: Date;
-  }[];
+  list?: InstitutionProps[];
 }
 
 const { title, list } = Astro.props;
