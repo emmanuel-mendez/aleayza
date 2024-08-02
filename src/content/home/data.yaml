@@ -1,6 +1,5 @@
 basis:
   fullName: Full Name
-  lastName: LastName
   headline: Headline
   image: ./images/me.webp
   email: user@email.com

@@ -9,6 +9,7 @@ import { getEntry } from "astro:content";
 import WorkExperience from "@/components/organisms/WorkExperience.astro";
 
 const home = await getEntry("home", "data");
+
 const { basis, about, workExperience, projects, education, skills } = home.data;
 ---
 

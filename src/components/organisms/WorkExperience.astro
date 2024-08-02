@@ -5,8 +5,8 @@ import Position, {
 import Section from "../molecules/Section.astro";
 
 interface Props {
-  title: string;
-  list: PositionProps[];
+  title?: string;
+  list?: PositionProps[];
 }
 
 const { title, list } = Astro.props;

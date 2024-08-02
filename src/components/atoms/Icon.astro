@@ -22,7 +22,7 @@ const icons: Record<string, Icon> = {
   Phone,
 };
 
-const IconComponent = icons[name as keyof typeof icons];
+const IconComponent: JSX.Element = icons[name as keyof typeof icons];
 ---
 
 <IconComponent />

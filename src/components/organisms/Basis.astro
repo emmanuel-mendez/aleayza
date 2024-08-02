@@ -86,17 +86,19 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
         {
           profiles &&
             profiles.map(({ network, url }) => {
-              return (
-                <a
-                  class="profile profile--no-print"
-                  href={url}
-                  title={`Visitar el perfil de ${fullName} en ${network}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon name={network} />
-                </a>
-              );
+              if (network) {
+                return (
+                  <a
+                    class="profile profile--no-print"
+                    href={url}
+                    title={`Visitar el perfil de ${fullName} en ${network}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name={network} />
+                  </a>
+                );
+              }
             })
         }
       </aside>
