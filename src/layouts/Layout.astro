@@ -28,35 +28,57 @@ const { title } = Astro.props;
   :root {
     --white: #ffffff;
     --black: #000000;
-    --primary: #204d66;
-    --complementary: #663920;
-    --analogous--primary: #20665c;
-    --analogous--primary-10: #20665c10;
-    --analogous--secondary: #202a66;
-    --analogous--secondary-10: #202a6610;
-    --split-complementary--primary: #665c20;
-    --split-complementary--secondary: #66202a;
-    --triadic--primary: #4d6620;
-    --triadic--secondary: #66204d;
-    --tetradic--primary: #206639;
-    --tetradic--secondary: #66204d;
-    --tetradic--tertiary: #663920;
-    --monochromatic--darker: #0e212c;
-    --monochromatic--dark-deep: #14303f;
-    --monochromatic--dark: #1a3e53;
-    --monochromatic--light: #265c79;
-    --monochromatic--light--deep: #2c6a8d;
-    --monochromatic--lighter: #3279a0;
+    --primary: #800080;
+    --complementary: #008000;
+    --analogous--primary: #400080;
+    --analogous--primary-10: #40008010;
+    --analogous--secondary: #800040;
+    --analogous--secondary-10: #80004010;
+    --split-complementary--primary: #008040;
+    --split-complementary--secondary: #408000;
+    --triadic--primary: #008080;
+    --triadic--secondary: #808000;
+    --tetradic--primary: #000080;
+    --tetradic--secondary: #808000;
+    --tetradic--tertiary: #008000;
+    --monochromatic--darker: #340034;
+    --monochromatic--dark-deep: #4d004d;
+    --monochromatic--dark: #670067;
+    --monochromatic--light: #9a009a;
+    --monochromatic--light--deep: #9a009a;
+    --monochromatic--lighter: #cd00cd;
   }
 
   body {
-    display: flex;
-    flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
-    color: var(--monochromatic--darker);
-    gap: 2em;
+  }
+
+  h1,
+  h2 {
+    text-transform: uppercase;
+  }
+
+  h1 {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  h2 {
+    color: var(--monochromatic--dark-deep);
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    color: var(--analogous--secondary);
+    font-size: 1.25rem;
+  }
+
+  dt {
+    color: var(--analogous--secondary);
+    font-size: 1.15rem;
   }
 
   a {
@@ -69,7 +91,7 @@ const { title } = Astro.props;
 
   a.link:hover,
   a.link:focus {
-    color: var(--complementary);
+    color: var(--analogous--primary);
   }
 
   a.link:hover.link--disabled,
@@ -87,62 +109,8 @@ const { title } = Astro.props;
     max-width: 75ch;
   }
 
-  @media (width >= 48em) {
-    .container {
-      margin: 0 auto;
-    }
-  }
-
-  .background--primary {
-    background-color: var(--white);
-  }
-
-  .background--secondary {
-    background-color: var(--black);
-  }
-
-  .cursor--pointer {
-    cursor: pointer;
-  }
-
-  .display--none {
-    display: none;
-  }
-
-  .display--block {
-    display: block;
-  }
-
-  .display--inline {
-    display: inline;
-  }
-
-  .display--flex {
-    display: flex;
-  }
-
-  .display--grid {
-    display: grid;
-  }
-
-  .position--static {
-    position: static;
-  }
-
-  .position--relative {
-    position: relative;
-  }
-
-  .position--absolute {
-    position: absolute;
-  }
-
-  .position--fixed {
-    position: fixed;
-  }
-
-  .position--sticky {
-    position: sticky;
+  li::marker {
+    color: var(--analogous--secondary);
   }
 
   .responsive--mobile {
@@ -182,7 +150,7 @@ const { title } = Astro.props;
     min-height: 100svh;
     flex-direction: column;
     padding: 2rem 1rem;
-    gap: 1.5rem;
+    gap: 1.75rem;
 
     @media (min-width: 48rem) {
       padding: 4rem 2rem;

@@ -4,8 +4,11 @@ import { Image } from "astro:assets";
 export interface Props {
   image?: string | undefined;
   url?: string | undefined;
-  company?: string | undefined;
   role?: string | undefined;
+  company?: string | undefined;
+  location: string | undefined;
+  sector: string | undefined;
+  typeOfCommerce: "B2B" | "B2C" | "C2C" | "C2B";
   startDate?: Date | undefined;
   endDate?: Date | undefined;
   responsibilities?: string[] | undefined;
@@ -15,8 +18,11 @@ export interface Props {
 const {
   image,
   url,
-  company,
   role,
+  company,
+  location,
+  sector,
+  typeOfCommerce,
   startDate,
   endDate,
   responsibilities,
@@ -25,46 +31,135 @@ const {
 ---
 
 <article>
-  <header>
-    <h3>
-      <a href={url}>{company}</a>
-    </h3>
-    <h4>{role}</h4>
-
-    <p>
-      <time datetime={startDate?.toISOString()}>
-        {startDate?.toLocaleDateString()}
-      </time>
-      -
-      <time datetime={endDate?.toISOString()}>
-        {endDate?.toLocaleDateString() || "Present"}
-      </time>
-    </p>
-
-    <dl>
-      <dt>Responsibilities</dt>
-      <dd>
-        <ul>
-          {responsibilities?.map((responsibility) => <li>{responsibility}</li>)}
-        </ul>
-      </dd>
-      <dt>Key Accomplishments</dt>
-      <dd>
-        <ul>
-          {
-            keyAccomplishments?.map((accomplishment) => (
-              <li>{accomplishment}</li>
-            ))
-          }
-        </ul>
-      </dd>
-    </dl>
-  </header>
-  <figure>
+  <a href={url} target="_blank" title={company} rel="noopener noreferrer">
     {
       image && company && (
-        <Image src={image} alt={company} width="64" height="64" />
+        <figure>
+          <Image src={image} alt={company} width="64" height="64" />
+        </figure>
       )
     }
-  </figure>
+  </a>
+
+  <div class="body">
+    <header>
+      <h3>
+        {role}
+        <span
+          >at <a
+            class="link"
+            href={url}
+            target="_blank"
+            title={company}
+            rel="noopener noreferrer">{company}</a
+          >
+        </span>
+      </h3>
+      <p>
+        <time datetime={startDate?.toISOString()}>
+          {
+            startDate?.toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric",
+            })
+          }
+        </time>
+        -
+        <time datetime={endDate?.toISOString()}>
+          {
+            endDate?.toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric",
+            }) || "Present"
+          }
+        </time>
+        <span class="company-info"
+          >[{location}] [{sector}, {typeOfCommerce}]</span
+        >
+      </p>
+    </header>
+
+    <dl>
+      <div class="data">
+        <dt>Responsibilities</dt>
+        <dd>
+          <ul>
+            {
+              responsibilities?.map((responsibility) => (
+                <li>{responsibility}</li>
+              ))
+            }
+          </ul>
+        </dd>
+      </div>
+      <div class="data">
+        <dt>Key Accomplishments</dt>
+        <dd>
+          <ul>
+            {
+              keyAccomplishments?.map((accomplishment) => (
+                <li>{accomplishment}</li>
+              ))
+            }
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </article>
+
+<style>
+  article {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    @media screen and (min-width: 27.1875rem) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    @media print {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h3 span,
+  .company-info {
+    opacity: 0.5;
+  }
+
+  .company-info {
+    color: var(--analogous--secondary);
+  }
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  dd ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: inside;
+  }
+</style>

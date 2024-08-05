@@ -23,8 +23,11 @@ const DEFAULT_DATA = {
       title: 'Work Experience',
       list: [
         {
-          company: 'Company',
           role: 'Role',
+          company: 'Company',
+          location: 'Miami, USA',
+          sector: 'Digital Production',
+          typeOfCommerce: 'B2B',
           startDate: new Date('2018-09-01'),
           endDate: new Date('2022-05-31'),
           responsibilities: ['Create', 'Maintain', 'Upgrade'],
@@ -112,8 +115,11 @@ const homeCollection = defineCollection({
       title: z.string().optional().default(DEFAULT_DATA.home.workExperience.title),
       list: z.array(
         z.object({
-          company: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.company),
           role: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.role),
+          company: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.company),
+          location: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.location),
+          sector: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.sector),
+          typeOfCommerce: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.typeOfCommerce),
           startDate: z.coerce.date().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.startDate),
           endDate: z.coerce.date().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.endDate),
           responsibilities: z.array(z.string()).optional().default(DEFAULT_DATA.home.workExperience.list[0]!.responsibilities),

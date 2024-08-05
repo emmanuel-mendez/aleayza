@@ -13,14 +13,29 @@ const { title, list } = Astro.props;
 ---
 
 <Section>
-  <h2>{title}</h2>
-  <ul>
-    {
-      list?.map((position) => (
-        <li>
-          <Position {...position} />
-        </li>
-      ))
-    }
-  </ul>
+  <div class="body">
+    <h2>{title}</h2>
+    <ul>
+      {
+        list?.map((position) => (
+          <li>
+            <Position {...position} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Section>
+
+<style>
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

@@ -10,14 +10,39 @@ const { title, list } = Astro.props;
 ---
 
 <Section>
-  <h2>{title}</h2>
-  <ul>
-    {
-      list?.map((skill) => (
-        <li>
-          <p>{skill}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="body">
+    <h2>{title}</h2>
+    <ul>
+      {
+        list?.map((skill) => (
+          <li>
+            <p>{skill}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Section>
+
+<style>
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(124px, calc(33.33% - 1.25rem))
+    );
+    justify-content: space-between;
+    column-gap: 1.25rem;
+    row-gap: 0.25rem;
+    list-style: inside;
+  }
+
+  li * {
+    display: inline;
+  }
+</style>
