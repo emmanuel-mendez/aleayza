@@ -1,7 +1,7 @@
 # Aleayza
 
 <p align="center">
-  <img align="center" alt="Aleayza" src="https://github.com/emmanuel-mendez/aleayza/blob/main/src/assets/images/aleayza-repository-open-graph.png?raw=true"/>
+  <img align="center" alt="Aleayza" src="https://raw.githubusercontent.com/emmanuel-mendez/aleayza/main/public/images/aleayza-repository-open-graph.png"/>
 </p>
 
 Aleayza is a free and **open-source template**, built with **Astro** and **TypeScript**. It serves as a starting point for creating your **personal portfolio website** or **showcasing your projects** online. The template is open-source and released under the MIT license, meaning you are free to use, modify, and distribute it for personal or commercial purposes.
