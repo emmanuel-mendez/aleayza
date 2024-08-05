@@ -20,7 +20,12 @@ const { title, description, information, goBack } = pageNotFound.data;
         <p class="description information">
           {information}
         </p>
-        <a href="/" class="link go-back">{goBack}</a>
+        <a
+          class="link go-back"
+          href="/"
+          title={goBack}
+          rel="noopener noreferrer">{goBack}</a
+        >
       </footer>
     </div>
   </Section>
@@ -33,7 +38,7 @@ const { title, description, information, goBack } = pageNotFound.data;
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   .header {
     display: flex;

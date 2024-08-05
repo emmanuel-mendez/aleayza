@@ -34,26 +34,38 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
           [
             email?.trim(),
             phone?.trim(),
-            profiles?.find(({ network }) => network === "LinkedIn")?.url,
+            ...(profiles || []).map(({ network, url }) => ({ network, url })),
           ]
             .filter(Boolean)
-            .map((profile, index, arr) => (
-              <>
-                {profile?.trim() === phone?.trim() ? (
-                  <a
-                    href={`tel:${profile}`}
-                    class="link profile profile--print"
-                  >
-                    {profile}
-                  </a>
-                ) : (
-                  <a href={profile} class="link profile profile--print">
-                    {profile}
-                  </a>
-                )}
-                {index < arr.length - 1 && <span class="separator" />}
-              </>
-            ))
+            .map((item, index, arr) => {
+              const profile = typeof item === "string" ? item : item?.url;
+              return (
+                <>
+                  {profile?.trim() === phone?.trim() ? (
+                    <a
+                      class="link profile profile--print"
+                      href={`tel:${profile}`}
+                      target="_blank"
+                      title={`Llamar por teléfono a ${fullName} al número ${phone}`}
+                      rel="noopener noreferrer"
+                    >
+                      {profile}
+                    </a>
+                  ) : (
+                    <a
+                      class="link profile profile--print"
+                      href={profile}
+                      target="_blank"
+                      title={profile}
+                      rel="noopener noreferrer"
+                    >
+                      {profile}
+                    </a>
+                  )}
+                  {index < arr.length - 1 && <span class="separator" />}
+                </>
+              );
+            })
         }
       </footer>
       <aside class="footer footer--no-print no-print">
@@ -62,8 +74,8 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
             <a
               class="profile profile--no-print"
               href={`mailto:${email}`}
-              title={`Enviar un correo electrónico a ${fullName} al correo ${email}`}
               target="_blank"
+              title={`Enviar un correo electrónico a ${fullName} al correo ${email}`}
               rel="noopener noreferrer"
             >
               <Icon name="Mail" />
@@ -75,8 +87,8 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
             <a
               class="profile profile--no-print"
               href={`tel:${phone}`}
-              title={`Llamar por teléfono a ${fullName} al número ${phone}`}
               target="_blank"
+              title={`Llamar por teléfono a ${fullName} al número ${phone}`}
               rel="noopener noreferrer"
             >
               <Icon name="Phone" />
@@ -86,17 +98,19 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
         {
           profiles &&
             profiles.map(({ network, url }) => {
-              return (
-                <a
-                  class="profile profile--no-print"
-                  href={url}
-                  title={`Visitar el perfil de ${fullName} en ${network}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon name={network} />
-                </a>
-              );
+              if (network) {
+                return (
+                  <a
+                    class="profile profile--no-print"
+                    href={url}
+                    target="_blank"
+                    title={`Visitar el perfil de ${fullName} en ${network}`}
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name={network} />
+                  </a>
+                );
+              }
             })
         }
       </aside>
@@ -110,30 +124,38 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
 
 <style>
   .host {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column-reverse;
     align-items: flex-start;
     gap: 0.5rem;
+
+    @media screen and (min-width: 27.1875rem) {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      justify-content: space-between;
+    }
   }
   .information {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
   }
 
   .body {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
   }
+
   .name {
-    color: var(--primary);
-    font-weight: bold;
-    font-size: 1.25rem;
+    word-break: break-word;
   }
 
   .headline {
     font-size: 0.85rem;
+
+    @media (min-width: 37.5rem) {
+      font-size: 1rem;
+    }
   }
 
   .footer {
@@ -143,7 +165,7 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
     &--print {
       justify-content: center;
       text-align: center;
-      gap: 2rem;
+      gap: 1.25rem;
     }
 
     &--no-print {
@@ -157,23 +179,25 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
     align-items: center;
     justify-content: center;
     padding: 0.25rem;
+    font-size: 0.75rem;
 
     &:hover {
-      color: var(--complementary);
+      color: var(--analogous--primary);
     }
 
     &--print {
       display: inline;
       padding: 0;
+      color: var(--analogous--secondary);
+      opacity: 0.5;
     }
     &--no-print {
       display: inline;
-      font-size: 0.75rem;
     }
   }
 
   .separator {
-    padding-inline: 1.5ch;
+    padding-inline: 1ch;
   }
 
   .picture {
@@ -190,17 +214,10 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
   }
 
   @media (min-width: 37.5rem) {
-    .host {
-      gap: 1rem;
-    }
     .name {
       color: var(--primary);
       font-weight: bold;
       font-size: 2rem;
-    }
-
-    .headline {
-      font-size: 1rem;
     }
   }
 </style>

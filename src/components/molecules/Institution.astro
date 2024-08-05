@@ -16,11 +16,21 @@ const { institution, degree, startDate, endDate } = Astro.props;
 
   <p>
     <time datetime={startDate?.toISOString()}>
-      {startDate?.toLocaleDateString()}
+      {
+        startDate?.toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+        })
+      }
     </time>
     -
     <time datetime={endDate?.toISOString()}>
-      {endDate?.toLocaleDateString()}
+      {
+        endDate?.toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+        })
+      }
     </time>
   </p>
 </article>

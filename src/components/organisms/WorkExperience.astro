@@ -5,22 +5,37 @@ import Position, {
 import Section from "../molecules/Section.astro";
 
 interface Props {
-  title: string;
-  list: PositionProps[];
+  title?: string;
+  list?: PositionProps[];
 }
 
 const { title, list } = Astro.props;
 ---
 
 <Section>
-  <h2>{title}</h2>
-  <ul>
-    {
-      list?.map((position) => (
-        <li>
-          <Position {...position} />
-        </li>
-      ))
-    }
-  </ul>
+  <div class="body">
+    <h2>{title}</h2>
+    <ul>
+      {
+        list?.map((position) => (
+          <li>
+            <Position {...position} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Section>
+
+<style>
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

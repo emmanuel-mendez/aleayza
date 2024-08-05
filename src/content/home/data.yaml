@@ -1,6 +1,5 @@
 basis:
   fullName: Full Name
-  lastName: LastName
   headline: Headline
   image: ./images/me.webp
   email: user@email.com
@@ -22,8 +21,11 @@ about:
 workExperience:
   title: Work Experience
   list:
-    - company: Company
-      role: Role
+    - role: Role
+      company: Company
+      location: Miami, USA
+      sector: Digital Production
+      typeOfCommerce: B2B
       startDate: 2018-09-01
       endDate: 2022-05-31
       responsibilities: 
@@ -35,9 +37,12 @@ workExperience:
         - Improvements made
         - Results achieved
       url: https://example.com/my-project
-      image: https://example.com/my-project.jpg
-    - company: Company
-      role: Role
+      image: https://raw.githubusercontent.com/emmanuel-mendez/aleayza/127ce3cf3522b9ab07f230751c905bc18fb129c0/public/favicon.svg
+    - role: Role
+      company: Company
+      location: Miami, USA
+      sector: Digital Production
+      typeOfCommerce: B2B
       startDate: 2018-09-01
       endDate: 2022-05-31
       responsibilities: 
@@ -49,7 +54,7 @@ workExperience:
         - Improvements made
         - Results achieved
       url: https://example.com/my-project
-      image: https://example.com/my-project.jpg
+      image: https://raw.githubusercontent.com/emmanuel-mendez/aleayza/127ce3cf3522b9ab07f230751c905bc18fb129c0/public/favicon.svg
 projects :
   title: Projects
   list:
@@ -62,7 +67,7 @@ projects :
         - Results achieved
         - Technologies used
       url: https://example.com/my-project
-      image: https://example.com/my-project.jpg
+      image: https://raw.githubusercontent.com/emmanuel-mendez/aleayza/127ce3cf3522b9ab07f230751c905bc18fb129c0/public/favicon.svg
     - name: Project
       isActive: true
       description: Description of the project.
@@ -72,7 +77,7 @@ projects :
         - Results achieved
         - Technologies used
       url: https://example.com/my-project
-      image: https://example.com/my-project.jpg
+      image: https://raw.githubusercontent.com/emmanuel-mendez/aleayza/127ce3cf3522b9ab07f230751c905bc18fb129c0/public/favicon.svg
 education:
   title: Education
   list:
