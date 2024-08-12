@@ -2,17 +2,24 @@
 import { Image } from "astro:assets";
 
 export interface Props {
-  image?: string | undefined;
-  url?: string | undefined;
-  role?: string | undefined;
-  company?: string | undefined;
-  location: string | undefined;
-  sector: string | undefined;
-  typeOfCommerce: "B2B" | "B2C" | "C2C" | "C2B";
-  startDate?: Date | undefined;
-  endDate?: Date | undefined;
-  responsibilities?: string[] | undefined;
-  keyAccomplishments?: string[] | undefined;
+  image?: string;
+  url?: string;
+  role?: string;
+  company?: string;
+  location?: string;
+  sector: string;
+  typeOfCommerce?: PositionTypeOfCommerce;
+  startDate?: Date;
+  endDate?: Date;
+  responsibilities?: string[];
+  keyAccomplishments?: string[];
+}
+
+export enum PositionTypeOfCommerce {
+  B2B = "B2B",
+  B2C = "B2C",
+  C2C = "C2C",
+  C2B = "C2B",
 }
 
 const {

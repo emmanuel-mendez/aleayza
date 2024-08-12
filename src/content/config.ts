@@ -1,3 +1,4 @@
+import { PositionTypeOfCommerce } from "@/components/molecules/Position.astro";
 import { z, defineCollection } from "astro:content";
 
 const DEFAULT_DATA = {
@@ -27,7 +28,7 @@ const DEFAULT_DATA = {
           company: 'Company',
           location: 'Miami, USA',
           sector: 'Digital Production',
-          typeOfCommerce: 'B2B',
+          typeOfCommerce: PositionTypeOfCommerce.B2B,
           startDate: new Date('2018-09-01'),
           endDate: new Date('2022-05-31'),
           responsibilities: ['Create', 'Maintain', 'Upgrade'],
@@ -119,7 +120,7 @@ const homeCollection = defineCollection({
           company: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.company),
           location: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.location),
           sector: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.sector),
-          typeOfCommerce: z.string().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.typeOfCommerce),
+          typeOfCommerce: z.nativeEnum(PositionTypeOfCommerce).optional().default(DEFAULT_DATA.home.workExperience.list[0]!.typeOfCommerce),
           startDate: z.coerce.date().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.startDate),
           endDate: z.coerce.date().optional().default(DEFAULT_DATA.home.workExperience.list[0]!.endDate),
           responsibilities: z.array(z.string()).optional().default(DEFAULT_DATA.home.workExperience.list[0]!.responsibilities),
