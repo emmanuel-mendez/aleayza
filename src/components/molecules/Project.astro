@@ -28,13 +28,13 @@ const { image, url, name, isActive, description, highlights } = Astro.props;
     <header>
       <h3>
         <a href={url} target="_blank" title={name} rel="noopener noreferrer"
-          >{name}</a
-        >
-        <span
-          aria-label={`Project status: ${isActive ? "Active" : "Inactive"}`}
-        >
-          ({isActive ? "Active" : "Inactive"})
-        </span>
+          >{name}
+          <span
+            aria-label={`Project status: ${isActive ? "Active" : "Inactive"}`}
+          >
+            ({isActive ? "Active" : "Inactive"})
+          </span>
+        </a>
       </h3>
 
       <p>{description}</p>
