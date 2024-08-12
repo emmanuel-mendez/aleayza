@@ -3,7 +3,7 @@ import { getEntry } from "astro:content";
 import Section from "../components/molecules/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
-const pageNotFound = await getEntry("pageNotFound", "data");
+const pageNotFound = await getEntry("pages", "pageNotFound");
 
 const { title, description, information, goBack } = pageNotFound.data;
 ---
