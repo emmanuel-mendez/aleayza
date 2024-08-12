@@ -1,7 +1,22 @@
 ---
+import { getEntry } from "astro:content";
+
+export const LAYOUT_DEFAULT_DATA = {
+  primary: "#800080",
+  analogousPrimary: "#400080",
+  analogousPrimary50: "#40008080",
+  analogousSecondary: "#800040",
+  analogousSecondary50: "#80004080",
+  monochromaticDarkDeep: "#4d004d",
+};
+
 interface Props {
   title: string;
 }
+
+const config = await getEntry("config", "data");
+
+const { colors } = config.data;
 
 const { title } = Astro.props;
 ---
@@ -24,31 +39,7 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style is:global>
-  :root {
-    --white: #ffffff;
-    --black: #000000;
-    --primary: #800080;
-    --complementary: #008000;
-    --analogous--primary: #400080;
-    --analogous--primary-10: #40008010;
-    --analogous--secondary: #800040;
-    --analogous--secondary-10: #80004010;
-    --split-complementary--primary: #008040;
-    --split-complementary--secondary: #408000;
-    --triadic--primary: #008080;
-    --triadic--secondary: #808000;
-    --tetradic--primary: #000080;
-    --tetradic--secondary: #808000;
-    --tetradic--tertiary: #008000;
-    --monochromatic--darker: #340034;
-    --monochromatic--dark-deep: #4d004d;
-    --monochromatic--dark: #670067;
-    --monochromatic--light: #9a009a;
-    --monochromatic--light--deep: #9a009a;
-    --monochromatic--lighter: #cd00cd;
-  }
-
+<style define:vars={{ ...colors }} is:global>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",

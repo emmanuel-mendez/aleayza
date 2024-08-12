@@ -3,9 +3,16 @@ import { getEntry } from "astro:content";
 import Section from "../components/molecules/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
-const pageNotFound = await getEntry("pages", "pageNotFound");
+export const DEFAULT_PAGE_NOT_FOUND_DATA = {
+  title: "404",
+  description: "Page not found",
+  information: "The page you are looking for does not exist.",
+  goBack: "Go back to portfolio",
+};
 
-const { title, description, information, goBack } = pageNotFound.data;
+const notFoundPage = await getEntry("notFoundPage", "data");
+
+const { title, description, information, goBack } = notFoundPage.data;
 ---
 
 <Layout title="Aleayza">

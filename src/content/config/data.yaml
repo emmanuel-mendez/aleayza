@@ -1,0 +1,7 @@
+colors:
+  primary: '#800080'
+  analogous--primary: '#400080'
+  analogous--primary-50: '#40008080'
+  analogous--secondary: '#800040'
+  analogous--secondary-50: '#80004080'
+  monochromatic--dark-deep: '#4d004d'
