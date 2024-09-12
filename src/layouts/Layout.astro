@@ -34,7 +34,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="layout">
+  <body class="layout flex flex-col gap-8">
     <slot />
   </body>
 </html>
@@ -104,24 +104,6 @@ const { title } = Astro.props;
     color: var(--analogous--secondary);
   }
 
-  .responsive--mobile {
-    @media (width >=26.875rem) {
-      display: none;
-    }
-  }
-
-  .responsive--tablet {
-    @media (width >=48rem) {
-      display: none;
-    }
-  }
-
-  .responsive--desktop {
-    @media (width <=64rem) {
-      display: none;
-    }
-  }
-
   .print {
     display: none !important;
   }
@@ -137,11 +119,8 @@ const { title } = Astro.props;
   }
 
   .layout {
-    display: flex;
     min-height: 100svh;
-    flex-direction: column;
     padding: 2rem 1rem;
-    gap: 1.75rem;
 
     @media (min-width: 48rem) {
       padding: 4rem 2rem;
