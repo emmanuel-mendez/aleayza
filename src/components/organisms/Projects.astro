@@ -13,9 +13,9 @@ const { title, list } = Astro.props;
 ---
 
 <Section>
-  <div class="body">
+  <div class="body flex flex-col gap-4">
     <h2>{title}</h2>
-    <ul>
+    <ul class="flex flex-col gap-6">
       {
         list?.map((project) => (
           <li>
@@ -26,16 +26,3 @@ const { title, list } = Astro.props;
     </ul>
   </div>
 </Section>
-
-<style>
-  .body {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-</style>
