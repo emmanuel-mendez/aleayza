@@ -3,20 +3,27 @@ import { getEntry } from "astro:content";
 import Section from "../components/molecules/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
-const pageNotFound = await getEntry("pageNotFound", "data");
+export const DEFAULT_PAGE_NOT_FOUND_DATA = {
+  title: "404",
+  description: "Page not found",
+  information: "The page you are looking for does not exist.",
+  goBack: "Go back to portfolio",
+};
 
-const { title, description, information, goBack } = pageNotFound.data;
+const notFoundPage = await getEntry("notFoundPage", "data");
+
+const { title, description, information, goBack } = notFoundPage.data;
 ---
 
 <Layout title="Aleayza">
   <Section>
-    <div class="body">
-      <header class="header">
+    <div class="body flex flex-col items-center justify-center gap-5">
+      <header class="header flex items-center justify-center">
         <h1 class="title">{title}</h1>
         <p class="description">{description}</p>
       </header>
 
-      <footer class="footer">
+      <footer class="footer flex items-center justify-center">
         <p class="description information">
           {information}
         </p>
@@ -33,17 +40,7 @@ const { title, description, information, goBack } = pageNotFound.data;
 
 <style>
   .body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: 100%;
-    gap: 1.25rem;
-  }
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   .title {
     font-size: 1.5rem;
@@ -57,12 +54,6 @@ const { title, description, information, goBack } = pageNotFound.data;
 
   .information {
     text-align: center;
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .go-back {

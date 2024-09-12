@@ -2,17 +2,24 @@
 import { Image } from "astro:assets";
 
 export interface Props {
-  image?: string | undefined;
-  url?: string | undefined;
-  role?: string | undefined;
-  company?: string | undefined;
-  location: string | undefined;
-  sector: string | undefined;
-  typeOfCommerce: "B2B" | "B2C" | "C2C" | "C2B";
-  startDate?: Date | undefined;
-  endDate?: Date | undefined;
-  responsibilities?: string[] | undefined;
-  keyAccomplishments?: string[] | undefined;
+  image?: string;
+  url?: string;
+  role?: string;
+  company?: string;
+  location?: string;
+  sector: string;
+  typeOfCommerce?: PositionTypeOfCommerce;
+  startDate?: Date;
+  endDate?: Date;
+  responsibilities?: string[];
+  keyAccomplishments?: string[];
+}
+
+export enum PositionTypeOfCommerce {
+  B2B = "B2B",
+  B2C = "B2C",
+  C2C = "C2C",
+  C2B = "C2B",
 }
 
 const {
@@ -30,22 +37,34 @@ const {
 } = Astro.props;
 ---
 
-<article>
-  <a href={url} target="_blank" title={company} rel="noopener noreferrer">
+<article class="position flex flex-col gap-5">
+  <a
+    class="icon__link"
+    href={url}
+    target="_blank"
+    title={company}
+    rel="noopener noreferrer"
+  >
     {
       image && company && (
-        <figure>
-          <Image src={image} alt={company} width="64" height="64" />
+        <figure class="icon__figure">
+          <Image
+            class="icon__image"
+            src={image}
+            alt={company}
+            width="64"
+            height="64"
+          />
         </figure>
       )
     }
   </a>
 
-  <div class="body">
-    <header>
-      <h3>
+  <div class="body flex flex-col gap-3">
+    <header class="header">
+      <h3 class="title">
         {role}
-        <span
+        <span class="title__body"
           >at <a
             class="link"
             href={url}
@@ -79,11 +98,11 @@ const {
       </p>
     </header>
 
-    <dl>
-      <div class="data">
+    <dl class="flex flex-col gap-3">
+      <div class="data flex flex-col gap-1">
         <dt>Responsibilities</dt>
         <dd>
-          <ul>
+          <ul class="flex flex-col gap-1 list-disc list-inside">
             {
               responsibilities?.map((responsibility) => (
                 <li>{responsibility}</li>
@@ -95,7 +114,7 @@ const {
       <div class="data">
         <dt>Key Accomplishments</dt>
         <dd>
-          <ul>
+          <ul class="flex flex-col gap-1 list-disc list-inside">
             {
               keyAccomplishments?.map((accomplishment) => (
                 <li>{accomplishment}</li>
@@ -109,57 +128,23 @@ const {
 </article>
 
 <style>
-  article {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-
-    @media screen and (min-width: 27.1875rem) {
-      display: grid;
-      grid-template-columns: auto 1fr;
-    }
-
+  .position {
     @media print {
       display: grid;
       grid-template-columns: auto 1fr;
     }
+    @media screen and (min-width: 27.1875rem) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
   }
 
-  .body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .head {
-    display: flex;
-    flex-direction: column;
-  }
-
-  h3 span,
+  .title__body,
   .company-info {
-    opacity: 0.5;
+    color: var(--analogous--secondary-50);
   }
 
   .company-info {
     color: var(--analogous--secondary);
-  }
-  dl {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .data {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  dd ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    list-style: inside;
   }
 </style>

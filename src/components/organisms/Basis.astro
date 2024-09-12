@@ -22,14 +22,14 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
 ---
 
 <Section>
-  <artcile class="host">
-    <div class="body">
-      <header class="information">
+  <artcile class="host flex flex-col-reverse items-start gap-2">
+    <div class="body flex flex-col gap-2">
+      <header class="information flex flex-col">
         <h1 class="name">{fullName}</h1>
         <p class="headline">{headline}</p>
       </header>
 
-      <footer class="footer footer--print print">
+      <footer class="footer print flex justify-center gap-5 text-center">
         {
           [
             email?.trim(),
@@ -68,7 +68,7 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
             })
         }
       </footer>
-      <aside class="footer footer--no-print no-print">
+      <aside class="footer no-print flex flex-wrap gap-2">
         {
           email && (
             <a
@@ -116,7 +116,7 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
       </aside>
     </div>
 
-    <figure class="picture no-print">
+    <figure class="picture no-print flex items-center justify-center">
       {image && <img class="image" src={image} alt={fullName} width="112" />}
     </figure>
   </artcile>
@@ -124,26 +124,11 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
 
 <style>
   .host {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 0.5rem;
-
     @media screen and (min-width: 27.1875rem) {
       display: grid;
       grid-template-columns: 1fr auto;
       justify-content: space-between;
     }
-  }
-  .information {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   .name {
@@ -158,27 +143,7 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
     }
   }
 
-  .footer {
-    display: flex;
-    gap: 0.5rem;
-
-    &--print {
-      justify-content: center;
-      text-align: center;
-      gap: 1.25rem;
-    }
-
-    &--no-print {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-
   .profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
     font-size: 0.75rem;
 
     &:hover {
@@ -186,24 +151,16 @@ const { fullName, headline, image, email, phone, profiles } = Astro.props;
     }
 
     &--print {
-      display: inline;
-      padding: 0;
-      color: var(--analogous--secondary);
-      opacity: 0.5;
+      color: var(--analogous--secondary-50);
     }
+
     &--no-print {
-      display: inline;
+      padding-inline: 0.25rem;
     }
   }
 
   .separator {
-    padding-inline: 1ch;
-  }
-
-  .picture {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 1ch;
   }
 
   .image {

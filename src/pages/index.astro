@@ -7,8 +7,93 @@ import Skills from "../components/organisms/Skills.astro";
 import Layout from "../layouts/Layout.astro";
 import { getEntry } from "astro:content";
 import WorkExperience from "@/components/organisms/WorkExperience.astro";
+import { PositionTypeOfCommerce } from "@/components/molecules/Position.astro";
 
-const home = await getEntry("home", "data");
+export const HOME_DEFAULT_DATA = {
+  basis: {
+    fullName: "Full Name",
+    headline: "Headline",
+    image: "./images/me.webp",
+    email: "user@email.com",
+    phone: "000-000-0000",
+    url: "https://example.com",
+    profiles: [
+      {
+        network: "LinkedIn",
+        username: "username-linkedin",
+        url: "https://linkedin.com/in/username-linkedin",
+      },
+    ],
+  },
+  about: {
+    title: "About Me",
+    summary:
+      "(number)+ years of experience creating (products) and specializing in (specializations).",
+  },
+  workExperience: {
+    title: "Work Experience",
+    list: [
+      {
+        role: "Role",
+        company: "Company",
+        location: "Miami, USA",
+        sector: "Digital Production",
+        typeOfCommerce: PositionTypeOfCommerce.B2B,
+        startDate: new Date("2018-09-01"),
+        endDate: new Date("2022-05-31"),
+        responsibilities: ["Create", "Maintain", "Upgrade"],
+        keyAccomplishments: [
+          "Features implemented",
+          "Improvements made",
+          "Results achieved",
+        ],
+        url: "https://example.com/my-project",
+        image: "https://example.com/my-project.jpg",
+      },
+    ],
+  },
+  projects: {
+    title: "Projects",
+    list: [
+      {
+        name: "Project",
+        isActive: true,
+        description: "Description of the project.",
+        highlights: [
+          "Features implemented",
+          "Improvements made",
+          "Results achieved",
+          "Technologies used",
+        ],
+        url: "https://example.com/my-project",
+        image: "https://example.com/my-project.jpg",
+      },
+    ],
+  },
+  education: {
+    title: "Education",
+    list: [
+      {
+        institution: "University",
+        degree: "Degree",
+        startDate: new Date("2018-09-01"),
+        endDate: new Date("2022-05-31"),
+      },
+    ],
+  },
+  skills: {
+    title: "Skills",
+    list: [
+      "Effective communication",
+      "Team collaboration",
+      "Problem-solving",
+      "Adaptability",
+      "Time management",
+    ],
+  },
+};
+
+const home = await getEntry("homePage", "data");
 
 const { basis, about, workExperience, projects, education, skills } = home.data;
 ---

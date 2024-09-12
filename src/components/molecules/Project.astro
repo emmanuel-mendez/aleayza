@@ -13,7 +13,7 @@ export interface Props {
 const { image, url, name, isActive, description, highlights } = Astro.props;
 ---
 
-<article>
+<article class="flex flex-col gap-5">
   {
     image && name && (
       <a href={url} target="_blank" title={name} rel="noopener noreferrer">
@@ -24,17 +24,17 @@ const { image, url, name, isActive, description, highlights } = Astro.props;
     )
   }
 
-  <div class="body">
+  <div class="body flex flex-col gap-3">
     <header>
       <h3>
         <a href={url} target="_blank" title={name} rel="noopener noreferrer"
-          >{name}</a
-        >
-        <span
-          aria-label={`Project status: ${isActive ? "Active" : "Inactive"}`}
-        >
-          ({isActive ? "Active" : "Inactive"})
-        </span>
+          >{name}
+          <span
+            aria-label={`Project status: ${isActive ? "Active" : "Inactive"}`}
+          >
+            ({isActive ? "Active" : "Inactive"})
+          </span>
+        </a>
       </h3>
 
       <p>{description}</p>
@@ -53,30 +53,18 @@ const { image, url, name, isActive, description, highlights } = Astro.props;
 
 <style>
   article {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-
-    @media screen and (min-width: 27.1875rem) {
-      display: grid;
-      grid-template-columns: auto 1fr;
-    }
-
     @media print {
       display: grid;
       grid-template-columns: auto 1fr;
     }
-  }
-
-  .body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    @media screen and (min-width: 27.1875rem) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
   }
 
   h3 span {
-    opacity: 0.5;
-    color: var(--analogous-primary);
+    color: var(--analogous-primary-50);
     font-size: 1rem;
   }
 </style>
