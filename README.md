@@ -4,7 +4,7 @@
   <img align="center" alt="Aleayza" src="https://raw.githubusercontent.com/emmanuel-mendez/aleayza/main/public/images/aleayza-repository-open-graph.png"/>
 </p>
 
-Aleayza is a free and **open-source template**, built with **Astro** and **TypeScript**. It serves as a starting point for creating your **personal portfolio website** or **showcasing your projects** online. The template is open-source and released under the MIT license, meaning you are free to use, modify, and distribute it for personal or commercial purposes.
+Aleayza lets you create both your personal portfolio website and professional CV in one place. This minimalist template is designed for high performance, is fully customizable, and is easily scalable. Inspired by https://github.com/BartoszJarocki/cv and https://github.com/gndx/ev0-astro-theme projects.
 
 ## Project Structure
 
