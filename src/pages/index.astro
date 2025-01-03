@@ -98,7 +98,7 @@ const home = await getEntry("homePage", "data");
 const { basis, about, workExperience, projects, education, skills } = home.data;
 ---
 
-<Layout title="Aleayza">
+<Layout title={basis.fullName} description={about.summary}>
   <Basis {...basis} />
   <About {...about} />
   <WorkExperience {...workExperience} />
